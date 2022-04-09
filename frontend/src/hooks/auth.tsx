@@ -21,9 +21,7 @@ export const useAuth = ({
         error,
         revalidate,
     }: responseInterface<object, object> = useSWR('/api/user', () => {
-        console.log('user called again throuhg revalidate')
         if (cookies.isAuth) {
-            console.log('and cookie is present')
             return axios
                 .get('/api/user')
                 .then(res => res.data)
@@ -35,7 +33,6 @@ export const useAuth = ({
                     router.push('/verify-email')
                 })
         }
-        console.log('no cookie')
     })
 
     const csrf = () => axios.get('/sanctum/csrf-cookie')
@@ -64,7 +61,8 @@ export const useAuth = ({
         await axios
             .post('/login', props)
             .then(() => {
-                setCookie('isAuth', 'true')
+                setCookie('isAuth', 'true', { secure: true })
+                router.push('/dashboard')
             })
             .catch(error => {
                 if (error.response.status !== 422) throw error
@@ -127,7 +125,6 @@ export const useAuth = ({
 
     useEffect(() => {
         if (middleware === 'guest' && redirectIfAuthenticated && user) {
-            console.log('GUEST AUTH CALLED')
             router.push(redirectIfAuthenticated)
         }
         if (middleware === 'auth' && error) logout()
