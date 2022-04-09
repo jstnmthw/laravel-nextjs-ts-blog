@@ -2,7 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
     content: ['./src/**/*.tsx'],
-    darkMode: 'media',
+    darkMode: 'class',
     theme: {
         extend: {
             fontFamily: {
@@ -18,5 +18,8 @@ module.exports = {
             opacity: ['disabled'],
         },
     },
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography'),
+    ],
 }

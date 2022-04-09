@@ -4,7 +4,9 @@ import { CookiesProvider } from 'react-cookie'
 
 const App = ({ Component, pageProps }) => (
     <CookiesProvider>
-        <ThemeProvider>
+        <ThemeProvider
+            forcedTheme={Component.theme || undefined}
+            attribute="class">
             <Component {...pageProps} />
         </ThemeProvider>
     </CookiesProvider>
