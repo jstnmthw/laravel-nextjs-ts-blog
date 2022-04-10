@@ -2,11 +2,11 @@ import { FC } from 'react'
 
 const Hero: FC = () => {
     return (
-        <div className="my-20 text-center">
+        <div className="my-10 text-center md:my-20">
             <h1 className="mb-3 text-4xl font-black">Blog</h1>
-            <span className="text-xl dark:text-gray-400">
-                Scribbles from a full stack developer.
-            </span>
+            <div className="mx-auto max-w-[300px] text-xl dark:text-white dark:opacity-60 md:max-w-full">
+                Scribblings from a full stack developer.
+            </div>
         </div>
     )
 }

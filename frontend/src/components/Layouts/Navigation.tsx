@@ -14,7 +14,7 @@ const Navigation = ({ user }) => {
     const { logout } = useAuth()
 
     return (
-        <nav className="sticky top-0 z-40 w-full flex-none border-b border-slate-900/10 bg-white py-4 px-4 dark:border-slate-300/10 dark:bg-gray-900 ">
+        <nav className="absolute top-0 z-40 w-full flex-none border-b border-slate-900/10 py-4 px-4 dark:border-slate-300/10">
             {/* Primary Navigation Menu */}
             <div className="mx-auto max-w-8xl ">
                 <div className="lg:px-8">

@@ -11,6 +11,14 @@ module.exports = {
             maxWidth: {
                 '8xl': '90rem',
             },
+            colors: {
+                navy: {
+                    900: '#11192c',
+                },
+            },
+            backgroundImage: {
+                blog: "url('/img/blog-dark.png')",
+            },
         },
     },
     variants: {
