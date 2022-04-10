@@ -1,12 +1,12 @@
-import ApplicationLogo from '@/components/ApplicationLogo'
 import Link from 'next/link'
+import DarkModeButton from '@/components/DarkModeButton'
+import ApplicationLogo from '@/components/ApplicationLogo'
 import ResponsiveNavLink from '@/components/ResponsiveNavLink'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { GitHubIcon } from '@/components/Icons'
 import { UserIcon } from '@heroicons/react/solid'
 import { useAuth } from '@/hooks/auth'
-import DarkModeButton from '@/components/DarkModeButton'
 
 const Navigation = ({ user }) => {
     const router = useRouter()
@@ -24,7 +24,7 @@ const Navigation = ({ user }) => {
                             <Link href="/">
                                 <a title="Justin.ly">
                                     <span className="text-green sr-only text-green-500">
-                                        Justin.ly Logo
+                                        Justin.ly homepage
                                     </span>
                                     <ApplicationLogo className="block w-20 fill-current text-gray-900 dark:text-white" />
                                 </a>
