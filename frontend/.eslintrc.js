@@ -18,7 +18,7 @@ module.exports = {
         },
         ecmaVersion: 2020,
     },
-    plugins: ['react', '@next/eslint-plugin-next', 'prettier'],
+    plugins: ['react', 'react-hooks', '@next/eslint-plugin-next', 'prettier'],
     rules: {
         'import/prefer-default-export': 0,
         'no-console': 'warn',
@@ -39,6 +39,8 @@ module.exports = {
         'react/no-unescaped-entities': 0,
         'react/require-default-props': 0,
         'react/react-in-jsx-scope': 0,
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'warn',
         'linebreak-style': ['error', 'unix'],
         semi: ['error', 'never'],
         'prettier/prettier': ['error', {}, { usePrettierrc: true }],
