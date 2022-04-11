@@ -1,9 +1,9 @@
 import { FC } from 'react'
-import { BlogArticle } from '@/types/blog'
+import { BlogPost } from '@/types/blog'
 import Link from 'next/link'
 import { ChevronRightIcon } from '@heroicons/react/solid'
 
-const BlogArticle: FC<{ data: BlogArticle }> = ({ data }) => {
+const BlogArticle: FC<{ data: BlogPost }> = ({ data }) => {
     return (
         <article className="mb-10 md:mb-20 md:grid md:grid-cols-5">
             <div className="mb-2 text-sm text-white opacity-50 md:col-span-1">

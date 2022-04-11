@@ -1,4 +1,4 @@
-export type BlogArticle = {
+export type BlogPost = {
     id: number
     title: string
     description: string
@@ -8,6 +8,6 @@ export type BlogArticle = {
 
 export type BlogResponse = {
     success: boolean
-    data?: Array<BlogArticle>
+    data?: Array<BlogPost>
     errorMessage?: any
 }
