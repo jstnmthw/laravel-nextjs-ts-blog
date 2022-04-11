@@ -3,18 +3,18 @@ import { useAuth } from '@/hooks/auth'
 import Navigation from '@/components/Layouts/Navigation'
 import Hero from '@/pages/blog/components/hero'
 import BlogArticle from '@/pages/blog/components/blog-article'
-import { BlogResponse } from '@/types/blog'
 
 export default function Home() {
     const { user } = useAuth()
     const { data: articles } = BlogData
+
     return (
         <div className="relative h-full">
             <Head>
                 <title>Blog - justin.ly</title>
             </Head>
             <Navigation user={user} />
-            <main className="h-full overflow-auto bg-blog bg-top bg-no-repeat pt-[53px]">
+            <main className="min-h-full overflow-auto bg-blog bg-top bg-no-repeat pt-[53px]">
                 <Hero />
                 <div className="mx-auto max-w-4xl px-5">
                     {articles.map(article => {
@@ -55,4 +55,4 @@ export const BlogData = {
         },
     ],
     errorMessage: undefined,
-} as BlogResponse
+}

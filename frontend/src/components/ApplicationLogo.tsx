@@ -1,10 +1,14 @@
 const ApplicationLogo = props => (
-    <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 22">
-        <path
-            fill="currentColor"
-            d="M3.5 15.5h-3v-3h3v3zm3 3h-3v-3H8v3H6.5zm1.5-3V.5h3v15H8zM15.5 15.5h-3V5h3v10.5zm7.5 3h-7.5v-3h6V5h3v13.5H23zM29 9.5h-3v-3h3v3zm3 9h-6v-3h7.5v3H32zm3-12h-6v-3h7.5v3H35zm-1.5 6H29v-3h4.5v3zm0 3v-3h3v3h-3zM42.5 15.5h-3V8H38V5h1.5V2h3v3H44v3h-1.5v7.5zm1.5 3h-1.5v-3h3v3H44zM48.5 3.5H47v-3h3v3h-1.5zm0 15H47V5h3v13.5h-1.5zM53 18.5h-1.5V5H62v3h-7.5v10.5H53zm10.5 0H62V8h3v10.5h-1.5zM68 18.5h-1.5v-3h3v3H68zM72.5 18.5H71V.5h3v18h-1.5zM78.5 12.5h-3V5h3v7.5zm4.5 9h-7.5v-3h9v3H83zm1.5-3v-3h-6v-3h6V5h3v13.5h-3z"
-        />
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216 216">
+        <path fill="currentColor" d="M0 0v72h144v72H0v72h216V0z" />
     </svg>
+
+    // <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 22">
+    //     <path
+    //         fill="currentColor"
+    //         d="M3.5 15.5h-3v-3h3v3zm3 3h-3v-3H8v3H6.5zm1.5-3V.5h3v15H8zM15.5 15.5h-3V5h3v10.5zm7.5 3h-7.5v-3h6V5h3v13.5H23zM29 9.5h-3v-3h3v3zm3 9h-6v-3h7.5v3H32zm3-12h-6v-3h7.5v3H35zm-1.5 6H29v-3h4.5v3zm0 3v-3h3v3h-3zM42.5 15.5h-3V8H38V5h1.5V2h3v3H44v3h-1.5v7.5zm1.5 3h-1.5v-3h3v3H44zM48.5 3.5H47v-3h3v3h-1.5zm0 15H47V5h3v13.5h-1.5zM53 18.5h-1.5V5H62v3h-7.5v10.5H53zm10.5 0H62V8h3v10.5h-1.5zM68 18.5h-1.5v-3h3v3H68zM72.5 18.5H71V.5h3v18h-1.5zM78.5 12.5h-3V5h3v7.5zm4.5 9h-7.5v-3h9v3H83zm1.5-3v-3h-6v-3h6V5h3v13.5h-3z"
+    //     />
+    // </svg>
     // <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 25">
     //     <path
     //         fill="currentColor"
