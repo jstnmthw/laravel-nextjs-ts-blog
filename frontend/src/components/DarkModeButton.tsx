@@ -13,12 +13,12 @@ const DarkModeButton = props => {
             {theme === 'light' ? (
                 <>
                     <SunIcon className="inline-block h-5 w-5 opacity-60" />
-                    <span className="ml-1.5">Light mode</span>
+                    <span className="ml-1.5">Light</span>
                 </>
             ) : (
                 <>
                     <MoonIcon className="inline-block h-5 w-5 opacity-60" />
-                    <span className="ml-1.5">Dark mode</span>
+                    <span className="ml-1.5">Dark</span>
                 </>
             )}
         </button>

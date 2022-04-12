@@ -81,23 +81,23 @@ const Navigation = ({ user }) => {
                             <Modal
                                 isOpen={open}
                                 closeModal={() => setOpen(open => !open)}>
-                                <div className="flex flex-col">
+                                <div className="mb-8 flex flex-col space-y-6 font-semibold">
                                     <Link href="/">
-                                        <a className="py-2">Homepage</a>
+                                        <a>Homepage</a>
                                     </Link>
                                     <Link href="/">
-                                        <a className="py-2">Codepen</a>
+                                        <a>Codepen</a>
                                     </Link>
                                     <Link href="/">
-                                        <a className="py-2">Gitlab</a>
+                                        <a>Gitlab</a>
                                     </Link>
                                     <Link href="/">
-                                        <a className="py-2">Github</a>
+                                        <a>Github</a>
                                     </Link>
                                 </div>
-                                <div className="mt-4 flex items-center border-t border-gray-700 pt-4 align-middle">
+                                <div className="mt-4 flex items-center justify-between border-t border-gray-700 pt-6 align-middle dark:text-white/75">
                                     Switch theme:{' '}
-                                    <DarkModeButton className="align-items ml-4 flex rounded-lg py-2 px-3 font-semibold opacity-75 transition-opacity hover:opacity-100 dark:bg-gray-600" />
+                                    <DarkModeButton className="align-items ml-4 flex rounded-lg py-2 px-3 font-semibold opacity-75 transition-opacity hover:opacity-100 dark:border-t dark:border-gray-500 dark:bg-gray-600 dark:text-white" />
                                 </div>
                             </Modal>
                         </div>
