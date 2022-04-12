@@ -22,9 +22,9 @@ const Navigation = ({ user }) => {
         <nav
             className={
                 (scrollTop
-                    ? 'bg-navy-900/50 backdrop-blur-sm md:bg-navy-900/10 '
+                    ? 'bg-white backdrop-blur-sm dark:bg-navy-900/50 md:bg-navy-900/10 '
                     : '') +
-                'fixed top-0 w-full flex-none border-b border-slate-900/10 py-4 px-4 transition-all dark:border-slate-300/10'
+                'fixed top-0 z-10 w-full flex-none border-b border-slate-900/10 py-4 px-4 transition-all dark:border-slate-300/10'
             }>
             {/* Primary Navigation Menu */}
             <div className="mx-auto max-w-8xl">
@@ -45,7 +45,7 @@ const Navigation = ({ user }) => {
                         {/* Settings Dropdown */}
                         <div className="relative ml-auto hidden items-center lg:flex">
                             <div className="hidden sm:flex">
-                                <DarkModeButton />
+                                <DarkModeButton iconOnly />
                                 <Link href="#">
                                     <a
                                         title="My Github"
@@ -71,11 +71,11 @@ const Navigation = ({ user }) => {
                             </div>
                         </div>
 
-                        {/* Hamburger */}
+                        {/* Mobile Menu */}
                         <div className="ml-auto flex items-center sm:block lg:hidden">
                             <button
                                 onClick={() => setOpen(open => !open)}
-                                className="inline-flex items-center justify-center rounded-md p-0.5 text-white transition duration-150 ease-in-out">
+                                className="inline-flex items-center justify-center rounded-md p-0.5 transition duration-150 ease-in-out dark:text-white">
                                 <DotsVerticalIcon className="inline-block h-6 w-6" />
                             </button>
                             <Modal

@@ -14,7 +14,7 @@ export default function Home() {
                 <title>Blog - justin.ly</title>
             </Head>
             <Navigation user={user} />
-            <main className="min-h-full overflow-auto bg-blog bg-top bg-no-repeat pt-[53px]">
+            <main className="min-h-full overflow-auto bg-top bg-no-repeat pt-[53px] dark:bg-blog">
                 <Hero />
                 <div className="mx-auto max-w-4xl px-5">
                     {articles.map(article => {
