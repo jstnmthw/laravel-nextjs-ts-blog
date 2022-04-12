@@ -19,9 +19,9 @@ const BlogArticle: FC<{ data: BlogPost }> = ({ data }) => {
                     {data.description}
                 </p>
                 <Link href={data.url}>
-                    <a className="inline-block rounded-full px-2 py-1.5 text-sm font-bold tracking-tight text-white transition-all dark:bg-white/10 hover:dark:bg-white/30">
+                    <a className="inline-block rounded-full px-2 py-1.5 pl-4 text-sm font-semibold tracking-tight text-white transition-all dark:bg-white/10 hover:dark:bg-white/30">
                         Read more{' '}
-                        <ChevronRightIcon className="inline-block h-4 w-4" />
+                        <ChevronRightIcon className="inline-block h-4 w-4 opacity-50" />
                     </a>
                 </Link>
             </div>

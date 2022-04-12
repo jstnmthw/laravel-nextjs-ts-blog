@@ -1,20 +1,25 @@
-import { FC } from 'react'
 import { useTheme } from 'next-themes'
 import { MoonIcon, SunIcon } from '@heroicons/react/outline'
 
-const DarkModeButton: FC = () => {
+const DarkModeButton = props => {
     const { theme, setTheme } = useTheme()
     return (
         <button
+            {...props}
             type="button"
-            className="px-2.5 opacity-75 transition-opacity hover:opacity-100"
             onClick={() => {
                 setTheme(theme === 'light' ? 'dark' : 'light')
             }}>
             {theme === 'light' ? (
-                <SunIcon className="h-5 w-5" />
+                <>
+                    <SunIcon className="inline-block h-5 w-5 opacity-60" />
+                    <span className="ml-1.5">Light mode</span>
+                </>
             ) : (
-                <MoonIcon className="h-5 w-5" />
+                <>
+                    <MoonIcon className="inline-block h-5 w-5 opacity-60" />
+                    <span className="ml-1.5">Dark mode</span>
+                </>
             )}
         </button>
     )
