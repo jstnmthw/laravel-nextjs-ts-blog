@@ -2,8 +2,8 @@ export type BlogPost = {
     id: number
     title: string
     description: string
-    url: string
-    published: string
+    slug: string
+    created_at: string
 }
 
 export type BlogResponse = {

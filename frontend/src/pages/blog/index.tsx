@@ -1,12 +1,18 @@
 import Head from 'next/head'
 import { useAuth } from '@/hooks/auth'
 import Navigation from '@/components/Layouts/Navigation'
-import Hero from '@/pages/blog/components/hero'
-import BlogArticle from '@/pages/blog/components/blog-article'
+import Hero from '@/components/Blog/hero'
+import useSWR from 'swr'
+import axios from '@/lib/axios'
+import BlogArticle from '@/components/Blog/blog-article'
 
 export default function Home() {
     const { user } = useAuth()
-    const { data: articles } = BlogData
+
+    const { data } = useSWR('/api/blog', () => {
+        return axios.get('/api/blog').then(res => res.data)
+    })
+    const articles = data ? [].concat(...data.data) : []
 
     return (
         <div className="relative h-full">
@@ -17,6 +23,9 @@ export default function Home() {
             <main className="min-h-full overflow-auto bg-top bg-no-repeat pt-[53px] dark:bg-blog">
                 <Hero />
                 <div className="mx-auto max-w-4xl px-5">
+                    {/*<pre className="max-w-4xl overflow-auto text-sm">*/}
+                    {/*    {JSON.stringify(articles, null, 2)}*/}
+                    {/*</pre>*/}
                     {articles.map(article => {
                         return <BlogArticle data={article} key={article.id} />
                     })}

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResources([
+    'blog' => BlogController::class,
+    'categories' => CategoryController::class,
+]);
+
+Route::get('blog/category/{category}', [BlogController::class, 'categoryIndex'])
+    ->name('blog.category.index');

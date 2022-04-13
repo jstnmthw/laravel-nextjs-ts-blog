@@ -45,7 +45,7 @@ const Navigation = ({ user }) => {
                         {/* Settings Dropdown */}
                         <div className="relative ml-auto hidden items-center lg:flex">
                             <div className="hidden sm:flex">
-                                <DarkModeButton iconOnly />
+                                <DarkModeButton iconOnly={true} />
                                 <Link href="#">
                                     <a
                                         title="My Github"

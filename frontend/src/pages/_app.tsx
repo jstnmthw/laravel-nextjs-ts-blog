@@ -5,6 +5,7 @@ import { CookiesProvider } from 'react-cookie'
 const App = ({ Component, pageProps }) => (
     <CookiesProvider>
         <ThemeProvider
+            disableTransitionOnChange
             forcedTheme={Component.theme || undefined}
             attribute="class">
             <Component {...pageProps} />
