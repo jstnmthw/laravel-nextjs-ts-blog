@@ -27,8 +27,8 @@ const DarkModeButton: FC<{ iconOnly?: boolean; className?: string }> = ({
                 </>
             ) : (
                 <>
-                    {iconOnly || <span className="ml-1.5">Dark</span>}
                     <MoonIcon className="inline-block h-5 w-5 opacity-60" />
+                    {iconOnly || <span className="ml-1.5">Dark</span>}
                 </>
             )}
         </button>
