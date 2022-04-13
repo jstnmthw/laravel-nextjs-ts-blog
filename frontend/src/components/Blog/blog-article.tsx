@@ -11,7 +11,7 @@ const BlogArticle: FC<{ data: BlogPost }> = ({ data }) => {
                 {format(new Date(data.created_at), 'MMM do, yyyy')}
             </div>
             <div className="md:col-span-4">
-                <Link href={'https://localhost/blog' + data.slug}>
+                <Link href={'/blog/' + data.slug}>
                     <a className="mb-3 inline-block text-lg font-semibold hover:underline md:mb-5 md:text-xl">
                         <h2>{data.title}</h2>
                     </a>
@@ -19,7 +19,7 @@ const BlogArticle: FC<{ data: BlogPost }> = ({ data }) => {
                 <p className="mb-4 opacity-50 dark:text-white md:mb-8">
                     {data.description}
                 </p>
-                <Link href={'https://localhost/blog' + data.slug}>
+                <Link href={'/blog/' + data.slug}>
                     <a className="inline-block rounded-full bg-gray-100 px-2 py-1.5 pl-4 text-sm font-semibold tracking-tight transition-all dark:bg-white/10 dark:text-white hover:dark:bg-white/30">
                         Read more{' '}
                         <ChevronRightIcon className="inline-block h-4 w-4 opacity-50" />

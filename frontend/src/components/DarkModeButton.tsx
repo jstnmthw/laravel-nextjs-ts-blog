@@ -1,5 +1,6 @@
 import { useTheme } from 'next-themes'
-import { MoonIcon, SunIcon } from '@heroicons/react/outline'
+import { MoonIcon } from '@heroicons/react/solid'
+import { SunIcon } from '@heroicons/react/outline'
 import { FC, useEffect, useState } from 'react'
 
 const DarkModeButton: FC<{ iconOnly?: boolean; className?: string }> = ({

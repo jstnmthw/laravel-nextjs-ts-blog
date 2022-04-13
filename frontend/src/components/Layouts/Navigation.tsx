@@ -45,7 +45,32 @@ const Navigation = ({ user }) => {
                         {/* Settings Dropdown */}
                         <div className="relative ml-auto hidden items-center lg:flex">
                             <div className="hidden sm:flex">
-                                <DarkModeButton iconOnly={true} />
+                                <div className="mr-2.5 border-r border-gray-200 pr-2.5 dark:border-white/10">
+                                    <Link href={'/blog'}>
+                                        <a className="inline-flex items-center px-2.5 text-sm font-semibold opacity-75 transition-opacity hover:opacity-100">
+                                            Blog
+                                        </a>
+                                    </Link>
+                                    {user ? (
+                                        <button
+                                            onClick={logout}
+                                            className="hover-opacity-100 inline-flex items-center px-2.5 text-sm font-semibold opacity-75 transition-opacity">
+                                            Logout
+                                        </button>
+                                    ) : (
+                                        <Link href="/login">
+                                            <a
+                                                title="Login"
+                                                className="inline-flex items-center px-2.5 text-sm font-semibold opacity-75 transition-opacity hover:opacity-100">
+                                                Login
+                                            </a>
+                                        </Link>
+                                    )}
+                                </div>
+                                <DarkModeButton
+                                    iconOnly={true}
+                                    className="inline-flex items-center px-2.5 opacity-70 transition-opacity hover:opacity-100"
+                                />
                                 <Link href="#">
                                     <a
                                         title="My Github"
@@ -53,21 +78,6 @@ const Navigation = ({ user }) => {
                                         <GitHubIcon className="h-5 w-5" />
                                     </a>
                                 </Link>
-                                {user ? (
-                                    <button
-                                        onClick={logout}
-                                        className="hover-opacity-100 inline-flex items-center px-2.5 text-sm font-semibold opacity-75 transition-opacity">
-                                        Logout
-                                    </button>
-                                ) : (
-                                    <Link href="/login">
-                                        <a
-                                            title="Login"
-                                            className="inline-flex items-center px-2.5 text-sm font-semibold opacity-75 transition-opacity hover:opacity-100">
-                                            Login
-                                        </a>
-                                    </Link>
-                                )}
                             </div>
                         </div>
 
@@ -85,11 +95,8 @@ const Navigation = ({ user }) => {
                                     <Link href="/">
                                         <a>Homepage</a>
                                     </Link>
-                                    <Link href="/">
-                                        <a>Codepen</a>
-                                    </Link>
-                                    <Link href="/">
-                                        <a>Gitlab</a>
+                                    <Link href="/blog">
+                                        <a>Blog</a>
                                     </Link>
                                     <Link href="/">
                                         <a>Github</a>

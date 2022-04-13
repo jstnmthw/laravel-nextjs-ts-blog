@@ -23,7 +23,10 @@ export default function Home() {
             </Head>
             <Navigation user={user} />
             <main className="min-h-full overflow-auto bg-top bg-no-repeat pt-[53px] dark:bg-blog">
-                <Hero />
+                <Hero
+                    title={'Blog'}
+                    subtitle={'Scribblings from a full stack developer.'}
+                />
                 <div className="mx-auto max-w-4xl px-5">
                     {loading ? (
                         <BlogArticleLoader count={10} />
