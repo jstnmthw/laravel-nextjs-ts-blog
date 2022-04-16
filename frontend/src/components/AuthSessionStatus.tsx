@@ -1,8 +1,8 @@
-const AuthSessionStatus = ({ status, className, ...props }) => (
+const AuthSessionStatus = ({ status, className, ...props }: { status: string | null, className: string }) => (
     <>
         {status && (
             <div
-                className={`${className} font-medium text-sm text-green-600`}
+                className={`${className} text-sm font-medium text-green-600`}
                 {...props}>
                 {status}
             </div>

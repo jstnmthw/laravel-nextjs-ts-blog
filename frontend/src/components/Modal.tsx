@@ -1,9 +1,9 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { FC, Fragment } from 'react'
+import {FC, Fragment, PropsWithChildren} from 'react'
 import { XIcon } from '@heroicons/react/solid'
 
 export const Modal: FC<{
-    children: any
+    children: PropsWithChildren<JSX.Element[]>
     isOpen: boolean
     closeModal: () => void
 }> = ({ children, isOpen, closeModal }) => {

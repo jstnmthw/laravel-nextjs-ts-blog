@@ -1,6 +1,7 @@
 import Head from 'next/head'
+import React from 'react'
 
-const GuestLayout = ({ children }) => {
+const GuestLayout = ({ children }: { children: React.ReactElement | null }) => {
     return (
         <div>
             <Head>

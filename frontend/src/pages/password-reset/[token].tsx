@@ -8,7 +8,7 @@ import Input from '@/components/Input'
 import Label from '@/components/Label'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/auth'
-import { useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 const PasswordReset = () => {
@@ -16,16 +16,16 @@ const PasswordReset = () => {
 
     const { resetPassword } = useAuth({
         middleware: 'guest',
-        redirectIfAuthenticated: '/dashboard',
+        redirectIfAuthenticated: '/dashboard'
     })
 
-    const [email, setEmail] = useState('')
+    const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState('')
     const [password_confirmation, setPasswordConfirmation] = useState('')
-    const [errors, setErrors] = useState([])
-    const [status, setStatus] = useState(null)
+    const [errors, setErrors] = useState<[]>([])
+    const [status, setStatus] = useState<string | null>(null)
 
-    const submitForm = event => {
+    const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         resetPassword({
@@ -33,12 +33,12 @@ const PasswordReset = () => {
             password,
             password_confirmation,
             setErrors,
-            setStatus,
+            setStatus
         })
     }
 
     useEffect(() => {
-        setEmail((router.query.email as string) || '')
+        setEmail(router.query.email as string)
     }, [router.query.email])
 
     return (
@@ -47,7 +47,7 @@ const PasswordReset = () => {
                 logo={
                     <Link href="/">
                         <a>
-                            <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
+                            <ApplicationLogo className="h-20 w-20 fill-current text-gray-500" />
                         </a>
                     </Link>
                 }>
@@ -66,8 +66,12 @@ const PasswordReset = () => {
                             id="email"
                             type="email"
                             value={email}
-                            className="block mt-1 w-full"
-                            onChange={event => setEmail(event.target.value)}
+                            className="mt-1 block w-full"
+                            onChange={(event: ChangeEvent) =>
+                                setEmail(
+                                    (event.target as HTMLInputElement).value
+                                )
+                            }
                             required
                             autoFocus
                         />
@@ -80,8 +84,12 @@ const PasswordReset = () => {
                             id="password"
                             type="password"
                             value={password}
-                            className="block mt-1 w-full"
-                            onChange={event => setPassword(event.target.value)}
+                            className="mt-1 block w-full"
+                            onChange={(event: ChangeEvent) =>
+                                setPassword(
+                                    (event.target as HTMLInputElement).value
+                                )
+                            }
                             required
                         />
                     </div>
@@ -96,15 +104,17 @@ const PasswordReset = () => {
                             id="password_confirmation"
                             type="password"
                             value={password_confirmation}
-                            className="block mt-1 w-full"
-                            onChange={event =>
-                                setPasswordConfirmation(event.target.value)
+                            className="mt-1 block w-full"
+                            onChange={(event: ChangeEvent) =>
+                                setPasswordConfirmation(
+                                    (event.target as HTMLInputElement).value
+                                )
                             }
                             required
                         />
                     </div>
 
-                    <div className="flex items-center justify-end mt-4">
+                    <div className="mt-4 flex items-center justify-end">
                         <Button>Reset Password</Button>
                     </div>
                 </form>

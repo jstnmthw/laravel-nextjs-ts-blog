@@ -9,5 +9,5 @@ export type BlogPost = {
 export type BlogResponse = {
     success: boolean
     data?: Array<BlogPost>
-    errorMessage?: any
+    errorMessage?: never
 }

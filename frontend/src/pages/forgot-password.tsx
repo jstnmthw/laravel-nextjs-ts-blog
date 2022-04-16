@@ -8,16 +8,16 @@ import Input from '@/components/Input'
 import Label from '@/components/Label'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/auth'
-import { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 
 const ForgotPassword = () => {
     const { forgotPassword } = useAuth({ middleware: 'guest' })
 
     const [email, setEmail] = useState('')
-    const [errors, setErrors] = useState([])
-    const [status, setStatus] = useState(null)
+    const [errors, setErrors] = useState<[]>([])
+    const [status, setStatus] = useState<string | null>(null)
 
-    const submitForm = event => {
+    const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         forgotPassword({ email, setErrors, setStatus })
@@ -29,7 +29,7 @@ const ForgotPassword = () => {
                 logo={
                     <Link href="/">
                         <a>
-                            <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
+                            <ApplicationLogo className="h-20 w-20 fill-current text-gray-500" />
                         </a>
                     </Link>
                 }>
@@ -56,14 +56,18 @@ const ForgotPassword = () => {
                             type="email"
                             name="email"
                             value={email}
-                            className="block mt-1 w-full"
-                            onChange={event => setEmail(event.target.value)}
+                            className="mt-1 block w-full"
+                            onChange={(event: ChangeEvent) =>
+                                setEmail(
+                                    (event.target as HTMLInputElement).value
+                                )
+                            }
                             required
                             autoFocus
                         />
                     </div>
 
-                    <div className="flex items-center justify-end mt-4">
+                    <div className="mt-4 flex items-center justify-end">
                         <Button className={undefined}>
                             Email Password Reset Link
                         </Button>

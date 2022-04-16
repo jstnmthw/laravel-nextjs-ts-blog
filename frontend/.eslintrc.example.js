@@ -1,6 +1,6 @@
 module.exports = {
     root: true,
-    parser: 'babel-eslint',
+    parser: '@typescript-eslint/parser',
     env: {
         node: true,
         browser: true,
@@ -9,7 +9,7 @@ module.exports = {
     },
     extends: [
         'eslint:recommended',
-        'plugin:react/recommended',
+        'plugin:@next/next/recommended',
         'plugin:prettier/recommended',
     ],
     parserOptions: {
@@ -17,12 +17,14 @@ module.exports = {
             jsx: true,
         },
         ecmaVersion: 2020,
+        parser: '@typescript-eslint/parser',
     },
     plugins: ['react', 'react-hooks', '@next/eslint-plugin-next', 'prettier'],
     rules: {
         'import/prefer-default-export': 0,
         'no-console': 'warn',
         'no-nested-ternary': 0,
+        'no-unused-vars': 'off',
         'no-underscore-dangle': 0,
         'no-unused-expressions': ['error', { allowTernary: true }],
         camelcase: 0,
@@ -41,8 +43,17 @@ module.exports = {
         'react/react-in-jsx-scope': 0,
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
+        'react/jsx-uses-react': 'error',
+        'react/jsx-uses-vars': 'error',
+        'typescript-eslint/no-unused-vars': 'error',
+        'typescript-eslint/no-explicit-any': 'error',
         'linebreak-style': ['error', 'unix'],
         semi: ['error', 'never'],
         'prettier/prettier': ['error', {}, { usePrettierrc: true }],
+    },
+    settings: {
+        react: {
+            version: 'detect',
+        },
     },
 }
