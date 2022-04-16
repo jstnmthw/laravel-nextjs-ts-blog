@@ -5,14 +5,11 @@ import axios from '@/lib/axios'
 import Head from 'next/head'
 import Navigation from '@/components/Layouts/Navigation'
 import Hero from '@/components/Blog/hero'
-import { useEffect } from 'react'
 
 const Post = () => {
     const router = useRouter()
     const { post } = router.query
     const { user } = useAuth()
-
-    useEffect(() => {})
 
     const { data, error } = useSWR(post ? '/api/blog/' + post : null, () => {
         return axios.get(`/api/blog/${post}`).then(res => res.data)

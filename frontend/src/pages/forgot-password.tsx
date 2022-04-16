@@ -29,7 +29,7 @@ const ForgotPassword = () => {
                 logo={
                     <Link href="/">
                         <a>
-                            <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
+                            <ApplicationLogo className="h-20 w-20 fill-current text-gray-500" />
                         </a>
                     </Link>
                 }>
@@ -56,14 +56,14 @@ const ForgotPassword = () => {
                             type="email"
                             name="email"
                             value={email}
-                            className="block mt-1 w-full"
+                            className="mt-1 block w-full"
                             onChange={event => setEmail(event.target.value)}
                             required
                             autoFocus
                         />
                     </div>
 
-                    <div className="flex items-center justify-end mt-4">
+                    <div className="mt-4 flex items-center justify-end">
                         <Button className={undefined}>
                             Email Password Reset Link
                         </Button>

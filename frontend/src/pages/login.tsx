@@ -8,7 +8,7 @@ import Input from '@/components/Input'
 import Label from '@/components/Label'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/auth'
-import { useEffect, useState } from 'react'
+import { SetStateAction, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 const Login = () => {
@@ -25,14 +25,16 @@ const Login = () => {
     const [status, setStatus] = useState(null)
 
     useEffect(() => {
-        if (router.query.reset?.length > 0 && errors.length === 0) {
-            setStatus(window.atob(router.query.reset as string))
-        } else {
-            setStatus(null)
+        if (router.query && router.query.reset) {
+            if (router.query.reset?.length > 0 && errors.length === 0) {
+                setStatus(window.atob(router.query.reset as string))
+            } else {
+                setStatus(null)
+            }
         }
-    })
+    }, [errors, router.query])
 
-    const submitForm = event => {
+    const submitForm = (event: { preventDefault: () => void }) => {
         event.preventDefault()
 
         login({ email, password, setErrors, setStatus })
@@ -44,7 +46,7 @@ const Login = () => {
                 logo={
                     <Link href="/">
                         <a>
-                            <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
+                            <ApplicationLogo className="h-20 w-20 fill-current text-gray-500" />
                         </a>
                     </Link>
                 }>
@@ -63,8 +65,10 @@ const Login = () => {
                             id="email"
                             type="email"
                             value={email}
-                            className="block mt-1 w-full"
-                            onChange={event => setEmail(event.target.value)}
+                            className="mt-1 block w-full"
+                            onChange={(event: {
+                                target: { value: SetStateAction<string> }
+                            }) => setEmail(event.target.value)}
                             required
                             autoFocus
                         />
@@ -78,15 +82,17 @@ const Login = () => {
                             id="password"
                             type="password"
                             value={password}
-                            className="block mt-1 w-full"
-                            onChange={event => setPassword(event.target.value)}
+                            className="mt-1 block w-full"
+                            onChange={(event: {
+                                target: { value: SetStateAction<string> }
+                            }) => setPassword(event.target.value)}
                             required
                             autoComplete="current-password"
                         />
                     </div>
 
                     {/* Remember Me */}
-                    <div className="block mt-4">
+                    <div className="mt-4 block">
                         <label
                             htmlFor="remember_me"
                             className="inline-flex items-center">
@@ -103,9 +109,9 @@ const Login = () => {
                         </label>
                     </div>
 
-                    <div className="flex items-center justify-end mt-4">
+                    <div className="mt-4 flex items-center justify-end">
                         <Link href="/forgot-password">
-                            <a className="underline text-sm text-gray-600 hover:text-gray-900">
+                            <a className="text-sm text-gray-600 underline hover:text-gray-900">
                                 Forgot your password?
                             </a>
                         </Link>

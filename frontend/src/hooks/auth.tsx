@@ -1,77 +1,95 @@
 import useSWR, { responseInterface } from 'swr'
 import axios from '@/lib/axios'
-import { useEffect } from 'react'
+import { useEffect} from 'react'
 import { useRouter } from 'next/router'
+import { ErrorResponse, UserResponse } from '@/types/response'
+import {
+    AuthHookParams,
+    ForgotPasswordParams,
+    LoginParams,
+    RegisterParams,
+    ResendEmailVerificationParams,
+    ResetPasswordParams
+} from '@/types/auth'
 import { useCookies } from 'react-cookie'
-
-interface AuthParams {
-    middleware?: string
-    redirectIfAuthenticated?: string
-}
 
 export const useAuth = ({
     middleware,
-    redirectIfAuthenticated,
-}: AuthParams = {}) => {
+    redirectIfAuthenticated
+}: AuthHookParams = {}) => {
     const router = useRouter()
-    const [cookies, setCookie, removeCookie] = useCookies(['isAuth'])
+    const [cookies, setCookies, removeCookies] = useCookies()
 
     const {
         data: user,
         error,
-        revalidate,
-    }: responseInterface<object, object> = useSWR('/api/user', () => {
-        if (cookies.isAuth) {
-            return axios
+        mutate
+    }: responseInterface<UserResponse, ErrorResponse> = useSWR(
+        cookies.isAuth ? '/api/user' : null,
+        () =>
+            axios
                 .get('/api/user')
                 .then(res => res.data)
                 .catch(error => {
-                    if (error.response.status !== 409) {
-                        throw error
-                    }
+                    if (error.response.status !== 409) throw error
 
                     router.push('/verify-email')
                 })
-        }
-    })
+    )
 
     const csrf = () => axios.get('/sanctum/csrf-cookie')
 
-    const register = async ({ setErrors, ...props }) => {
+    const register = async ({ setErrors, ...props }: RegisterParams) => {
         await csrf()
 
         setErrors([])
 
         axios
             .post('/register', props)
-            .then(() => revalidate())
+            .then(() => {
+                setCookies('isAuth', true, { sameSite: 'lax' })
+                mutate()
+            })
             .catch(error => {
                 if (error.response.status !== 422) throw error
 
-                setErrors(Object.values(error.response.data.errors).flat())
+                setErrors(
+                    Object.values(
+                        error.response.data.errors
+                    ).flat() as ErrorResponse
+                )
             })
     }
 
-    const login = async ({ setErrors, setStatus, ...props }) => {
+    const login = async ({ setErrors, setStatus, ...props }: LoginParams) => {
         await csrf()
 
         setErrors([])
         setStatus(null)
 
-        await axios
+        axios
             .post('/login', props)
             .then(() => {
-                setCookie('isAuth', 'true', { secure: true })
-                router.push('/dashboard')
+                setCookies('isAuth', true, { sameSite: 'lax' })
+                mutate()
             })
             .catch(error => {
+                removeCookies('isAuth')
                 if (error.response.status !== 422) throw error
 
-                setErrors(Object.values(error.response.data.errors).flat())
+                setErrors(
+                    Object.values(
+                        error.response.data.errors
+                    ).flat() as ErrorResponse
+                )
             })
     }
 
-    const forgotPassword = async ({ setErrors, setStatus, email }) => {
+    const forgotPassword = async ({
+        setErrors,
+        setStatus,
+        email
+    }: ForgotPasswordParams) => {
         await csrf()
 
         setErrors([])
@@ -83,11 +101,19 @@ export const useAuth = ({
             .catch(error => {
                 if (error.response.status !== 422) throw error
 
-                setErrors(Object.values(error.response.data.errors).flat())
+                setErrors(
+                    Object.values(
+                        error.response.data.errors
+                    ).flat() as ErrorResponse
+                )
             })
     }
 
-    const resetPassword = async ({ setErrors, setStatus, ...props }) => {
+    const resetPassword = async ({
+        setErrors,
+        setStatus,
+        ...props
+    }: ResetPasswordParams) => {
         await csrf()
 
         setErrors([])
@@ -96,18 +122,22 @@ export const useAuth = ({
         axios
             .post('/reset-password', { token: router.query.token, ...props })
             .then(response =>
-                router.push(
-                    '/login?reset=' + window.btoa(response.data.status),
-                ),
+                router.push('/login?reset=' + window.btoa(response.data.status))
             )
             .catch(error => {
                 if (error.response.status != 422) throw error
 
-                setErrors(Object.values(error.response.data.errors).flat())
+                setErrors(
+                    Object.values(
+                        error.response.data.errors
+                    ).flat() as ErrorResponse
+                )
             })
     }
 
-    const resendEmailVerification = ({ setStatus }) => {
+    const resendEmailVerification = ({
+        setStatus
+    }: ResendEmailVerificationParams) => {
         axios
             .post('/email/verification-notification')
             .then(response => setStatus(response.data.status))
@@ -115,24 +145,19 @@ export const useAuth = ({
 
     const logout = async () => {
         if (!error) {
-            await axios.post('/logout')
-
-            removeCookie('isAuth')
+            await axios.post('/logout').then(() => {
+                removeCookies('isAuth', { sameSite: 'lax' })
+            })
         }
 
         window.location.pathname = '/login'
     }
 
     useEffect(() => {
-        if (middleware === 'guest' && redirectIfAuthenticated && user) {
+        if (middleware === 'guest' && redirectIfAuthenticated && user)
             router.push(redirectIfAuthenticated)
-        }
         if (middleware === 'auth' && error) logout()
-    }, [user, error])
-
-    useEffect(() => {
-        revalidate()
-    }, [cookies.isAuth])
+    })
 
     return {
         user,
@@ -141,6 +166,6 @@ export const useAuth = ({
         forgotPassword,
         resetPassword,
         resendEmailVerification,
-        logout,
+        logout
     }
 }

@@ -2,18 +2,21 @@ import Link from 'next/link'
 import DarkModeButton from '@/components/DarkModeButton'
 import ApplicationLogo from '@/components/ApplicationLogo'
 import Modal from '@/components/Modal'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState} from 'react'
 import { GitHubIcon } from '@/components/Icons'
 import { DotsVerticalIcon } from '@heroicons/react/solid'
 import { useAuth } from '@/hooks/auth'
+import { User } from '@/types/auth'
 
-const Navigation = ({ user }) => {
+const Navigation = ({ user }: { user: User }) => {
     const { logout } = useAuth()
     const [open, setOpen] = useState(false)
     const [scrollTop, setScrollTop] = useState(0)
 
     useEffect(() => {
-        const onScroll = e => setScrollTop(e.target.documentElement.scrollTop)
+        const onScroll = (e: Event) => {
+            setScrollTop((e.target as Document)?.documentElement.scrollTop)
+        }
         window.addEventListener('scroll', onScroll)
         return () => window.removeEventListener('scroll', onScroll)
     }, [scrollTop])
@@ -31,16 +34,24 @@ const Navigation = ({ user }) => {
                 <div className="lg:px-8">
                     <div className="relative flex items-center sm:justify-center">
                         {/* Logo */}
-                        <h1>
-                            <Link href="/">
-                                <a title="Justin.ly">
-                                    <span className="text-green sr-only text-green-500">
-                                        Justin.ly homepage
-                                    </span>
-                                    <ApplicationLogo className="block w-6 fill-current text-gray-900 dark:text-white" />
-                                </a>
-                            </Link>
-                        </h1>
+                        <div className="flex items-center">
+                            <h1>
+                                <Link href="/">
+                                    <a title="Justin.ly">
+                                        <span className="text-green sr-only text-green-500">
+                                            Justin.ly homepage
+                                        </span>
+                                        <ApplicationLogo className="block w-6 fill-current text-gray-900 dark:text-white" />
+                                    </a>
+                                </Link>
+                            </h1>
+
+                            {user &&
+                                <span className="ml-5 text-[14px] text-gray-600">
+                                Hello, {user?.name}
+                            </span>
+                            }
+                        </div>
 
                         {/* Settings Dropdown */}
                         <div className="relative ml-auto hidden items-center lg:flex">

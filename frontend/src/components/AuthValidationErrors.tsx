@@ -6,7 +6,7 @@ const AuthValidationErrors = ({ errors = [], ...props }) => (
                     Whoops! Something went wrong.
                 </div>
 
-                <ul className="mt-3 list-disc list-inside text-sm text-red-600">
+                <ul className="mt-3 list-inside list-disc text-sm text-red-600">
                     {errors.map(error => (
                         <li key={error}>{error}</li>
                     ))}

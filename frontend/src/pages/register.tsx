@@ -7,7 +7,7 @@ import Input from '@/components/Input'
 import Label from '@/components/Label'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/auth'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 const Register = () => {
     const { register } = useAuth({
@@ -21,8 +21,8 @@ const Register = () => {
     const [password_confirmation, setPasswordConfirmation] = useState('')
     const [errors, setErrors] = useState([])
 
-    const submitForm = event => {
-        event.preventDefault()
+    const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
 
         register({ name, email, password, password_confirmation, setErrors })
     }
@@ -33,11 +33,10 @@ const Register = () => {
                 logo={
                     <Link href="/">
                         <a>
-                            <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
+                            <ApplicationLogo className="h-20 w-20 fill-current text-gray-500" />
                         </a>
                     </Link>
                 }>
-
                 {/* Validation Errors */}
                 <AuthValidationErrors className="mb-4" errors={errors} />
 
@@ -50,8 +49,8 @@ const Register = () => {
                             id="name"
                             type="text"
                             value={name}
-                            className="block mt-1 w-full"
-                            onChange={event => setName(event.target.value)}
+                            className="mt-1 block w-full"
+                            onChange={(event: Event) => setName((event.target as HTMLInputElement).value)}
                             required
                             autoFocus
                         />
@@ -65,8 +64,8 @@ const Register = () => {
                             id="email"
                             type="email"
                             value={email}
-                            className="block mt-1 w-full"
-                            onChange={event => setEmail(event.target.value)}
+                            className="mt-1 block w-full"
+                            onChange={(event: Event) => setEmail((event.target as HTMLInputElement).value)}
                             required
                         />
                     </div>
@@ -79,8 +78,8 @@ const Register = () => {
                             id="password"
                             type="password"
                             value={password}
-                            className="block mt-1 w-full"
-                            onChange={event => setPassword(event.target.value)}
+                            className="mt-1 block w-full"
+                            onChange={(event: Event) => setPassword((event.target as HTMLInputElement).value)}
                             required
                             autoComplete="new-password"
                         />
@@ -96,17 +95,17 @@ const Register = () => {
                             id="password_confirmation"
                             type="password"
                             value={password_confirmation}
-                            className="block mt-1 w-full"
-                            onChange={event =>
-                                setPasswordConfirmation(event.target.value)
+                            className="mt-1 block w-full"
+                            onChange={(event: Event) =>
+                                setPasswordConfirmation((event.target as HTMLInputElement).value)
                             }
                             required
                         />
                     </div>
 
-                    <div className="flex items-center justify-end mt-4">
+                    <div className="mt-4 flex items-center justify-end">
                         <Link href="/login">
-                            <a className="underline text-sm text-gray-600 hover:text-gray-900">
+                            <a className="text-sm text-gray-600 underline hover:text-gray-900">
                                 Already registered?
                             </a>
                         </Link>

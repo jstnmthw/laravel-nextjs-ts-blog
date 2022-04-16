@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Menu, Transition } from '@headlessui/react'
 
 const Dropdown = ({
@@ -30,7 +30,7 @@ const Dropdown = ({
             break
     }
 
-    const [open, setOpen] = useState(false)
+    // const [open, setOpen] = useState(false)
 
     return (
         <Menu as="div" className="relative">
@@ -49,7 +49,7 @@ const Dropdown = ({
                         <div
                             className={`absolute z-50 mt-2 ${widthClass} rounded-md shadow-lg ${alignmentClasses}`}>
                             <Menu.Items
-                                className={`rounded-md focus:outline-none ring-1 ring-black ring-opacity-5 ${contentClasses}`}
+                                className={`rounded-md ring-1 ring-black ring-opacity-5 focus:outline-none ${contentClasses}`}
                                 static>
                                 {children}
                             </Menu.Items>
