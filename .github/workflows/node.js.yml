@@ -28,6 +28,10 @@ jobs:
         cache: 'npm'
         cache-dependency-path: ./frontend/package-lock.json
     - run: npm ci
+      working-directory: ./frontend
     - run: npm run build --if-present
+      working-directory: ./frontend
     - run: npm es-lint
+      working-directory: ./frontend
     - run: npm type-check
+      working-directory: ./frontend
