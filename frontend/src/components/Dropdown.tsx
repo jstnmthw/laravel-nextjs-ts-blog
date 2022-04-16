@@ -8,8 +8,15 @@ const Dropdown = ({
     trigger,
     children,
     widthClass = 'w-48',
-}) => {
-    let alignmentClasses
+}: {
+    align: string,
+    width: number,
+    contentClasses: string,
+    trigger: () => void,
+    children: JSX.Element,
+    widthClass: string
+})  => {
+    let alignmentClasses: string
 
     switch (width) {
         case 48:

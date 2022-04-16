@@ -8,7 +8,7 @@ import Input from '@/components/Input'
 import Label from '@/components/Label'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/auth'
-import { useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 const PasswordReset = () => {
@@ -16,16 +16,16 @@ const PasswordReset = () => {
 
     const { resetPassword } = useAuth({
         middleware: 'guest',
-        redirectIfAuthenticated: '/dashboard',
+        redirectIfAuthenticated: '/dashboard'
     })
 
-    const [email, setEmail] = useState('')
+    const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState('')
     const [password_confirmation, setPasswordConfirmation] = useState('')
-    const [errors, setErrors] = useState([])
-    const [status, setStatus] = useState(null)
+    const [errors, setErrors] = useState<[]>([])
+    const [status, setStatus] = useState<string | null>(null)
 
-    const submitForm = event => {
+    const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         resetPassword({
@@ -33,12 +33,12 @@ const PasswordReset = () => {
             password,
             password_confirmation,
             setErrors,
-            setStatus,
+            setStatus
         })
     }
 
     useEffect(() => {
-        setEmail(router.query.email)
+        setEmail(router.query.email as string)
     }, [router.query.email])
 
     return (
@@ -67,7 +67,11 @@ const PasswordReset = () => {
                             type="email"
                             value={email}
                             className="mt-1 block w-full"
-                            onChange={event => setEmail(event.target.value)}
+                            onChange={(event: ChangeEvent) =>
+                                setEmail(
+                                    (event.target as HTMLInputElement).value
+                                )
+                            }
                             required
                             autoFocus
                         />
@@ -81,7 +85,11 @@ const PasswordReset = () => {
                             type="password"
                             value={password}
                             className="mt-1 block w-full"
-                            onChange={event => setPassword(event.target.value)}
+                            onChange={(event: ChangeEvent) =>
+                                setPassword(
+                                    (event.target as HTMLInputElement).value
+                                )
+                            }
                             required
                         />
                     </div>
@@ -97,8 +105,10 @@ const PasswordReset = () => {
                             type="password"
                             value={password_confirmation}
                             className="mt-1 block w-full"
-                            onChange={event =>
-                                setPasswordConfirmation(event.target.value)
+                            onChange={(event: ChangeEvent) =>
+                                setPasswordConfirmation(
+                                    (event.target as HTMLInputElement).value
+                                )
                             }
                             required
                         />

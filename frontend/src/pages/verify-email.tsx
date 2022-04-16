@@ -9,10 +9,10 @@ import { useState } from 'react'
 const VerifyEmail = () => {
     const { logout, resendEmailVerification } = useAuth({
         middleware: 'auth',
-        redirectIfAuthenticated: '/dashboard',
+        redirectIfAuthenticated: '/dashboard'
     })
 
-    const [status, setStatus] = useState(null)
+    const [status, setStatus] = useState<string | null>(null)
 
     return (
         <GuestLayout>
@@ -30,6 +30,13 @@ const VerifyEmail = () => {
                     emailed to you? If you didn&apos;t receive the email, we
                     will gladly send you another.
                 </div>
+
+                {status === 'verification-link-sent' && (
+                    <div className="mb-4 text-sm font-medium text-green-600">
+                        A new verification link has been sent to the email
+                        address you provided during registration.
+                    </div>
+                )}
 
                 {status === 'verification-link-sent' && (
                     <div className="mb-4 text-sm font-medium text-green-600">

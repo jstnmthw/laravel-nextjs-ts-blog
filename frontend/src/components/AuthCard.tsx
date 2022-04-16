@@ -1,4 +1,12 @@
-const AuthCard = ({ logo, children }) => (
+import React, { ReactElement, ReactNode } from 'react'
+
+const AuthCard = ({
+    logo,
+    children
+}: {
+    logo: JSX.Element
+    children: ReactElement | ReactNode
+}) => (
     <div className="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0">
         <div>{logo}</div>
 

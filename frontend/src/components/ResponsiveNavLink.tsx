@@ -1,6 +1,13 @@
 import Link from 'next/link'
 
-const ResponsiveNavLink = ({ active = false, children, ...props }) => (
+const ResponsiveNavLink = ({
+    active = false,
+    children,
+    ...props
+}: {
+    active: boolean
+    children: JSX.Element
+}) => (
     <Link href={''} {...props}>
         <a
             className={`block border-l-4 py-2 pl-3 pr-4 text-base font-medium leading-5 transition duration-150 ease-in-out focus:outline-none ${
@@ -13,7 +20,7 @@ const ResponsiveNavLink = ({ active = false, children, ...props }) => (
     </Link>
 )
 
-export const ResponsiveNavButton = props => (
+export const ResponsiveNavButton = (props: unknown) => (
     <button
         className="block w-full border-l-4 border-transparent py-2 pl-3 pr-4 text-left text-base font-medium leading-5 text-gray-600 transition duration-150 ease-in-out hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800 focus:border-gray-300 focus:bg-gray-50 focus:text-gray-800 focus:outline-none"
         {...props}

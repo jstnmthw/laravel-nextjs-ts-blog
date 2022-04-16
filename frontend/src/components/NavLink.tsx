@@ -1,6 +1,14 @@
 import Link from 'next/link'
 
-const NavLink = ({ active = false, children, ...props }) => (
+const NavLink = ({
+    active = false,
+    children,
+    ...props
+}: {
+    active: boolean
+    children: JSX.Element
+    className: string
+}) => (
     <Link href={''} {...props}>
         <a
             className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none ${

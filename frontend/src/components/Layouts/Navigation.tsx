@@ -2,13 +2,13 @@ import Link from 'next/link'
 import DarkModeButton from '@/components/DarkModeButton'
 import ApplicationLogo from '@/components/ApplicationLogo'
 import Modal from '@/components/Modal'
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { GitHubIcon } from '@/components/Icons'
 import { DotsVerticalIcon } from '@heroicons/react/solid'
 import { useAuth } from '@/hooks/auth'
 import { User } from '@/types/auth'
 
-const Navigation = ({ user }: { user: User }) => {
+const Navigation = ({ user }: { user?: User }) => {
     const { logout } = useAuth()
     const [open, setOpen] = useState(false)
     const [scrollTop, setScrollTop] = useState(0)
@@ -46,11 +46,11 @@ const Navigation = ({ user }: { user: User }) => {
                                 </Link>
                             </h1>
 
-                            {user &&
+                            {user && (
                                 <span className="ml-5 text-[14px] text-gray-600">
-                                Hello, {user?.name}
-                            </span>
-                            }
+                                    Hello, {user?.name}
+                                </span>
+                            )}
                         </div>
 
                         {/* Settings Dropdown */}

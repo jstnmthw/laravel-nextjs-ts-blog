@@ -7,22 +7,22 @@ import Input from '@/components/Input'
 import Label from '@/components/Label'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/auth'
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 
 const Register = () => {
     const { register } = useAuth({
         middleware: 'guest',
-        redirectIfAuthenticated: '/dashboard',
+        redirectIfAuthenticated: '/dashboard'
     })
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [password_confirmation, setPasswordConfirmation] = useState('')
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState<[]>([])
 
-    const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+    const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
 
         register({ name, email, password, password_confirmation, setErrors })
     }
@@ -50,7 +50,11 @@ const Register = () => {
                             type="text"
                             value={name}
                             className="mt-1 block w-full"
-                            onChange={(event: Event) => setName((event.target as HTMLInputElement).value)}
+                            onChange={(event: ChangeEvent) =>
+                                setName(
+                                    (event.target as HTMLInputElement).value
+                                )
+                            }
                             required
                             autoFocus
                         />
@@ -65,7 +69,11 @@ const Register = () => {
                             type="email"
                             value={email}
                             className="mt-1 block w-full"
-                            onChange={(event: Event) => setEmail((event.target as HTMLInputElement).value)}
+                            onChange={(event: ChangeEvent) =>
+                                setEmail(
+                                    (event.target as HTMLInputElement).value
+                                )
+                            }
                             required
                         />
                     </div>
@@ -79,7 +87,11 @@ const Register = () => {
                             type="password"
                             value={password}
                             className="mt-1 block w-full"
-                            onChange={(event: Event) => setPassword((event.target as HTMLInputElement).value)}
+                            onChange={(event: ChangeEvent) =>
+                                setPassword(
+                                    (event.target as HTMLInputElement).value
+                                )
+                            }
                             required
                             autoComplete="new-password"
                         />
@@ -96,8 +108,10 @@ const Register = () => {
                             type="password"
                             value={password_confirmation}
                             className="mt-1 block w-full"
-                            onChange={(event: Event) =>
-                                setPasswordConfirmation((event.target as HTMLInputElement).value)
+                            onChange={(event: ChangeEvent) =>
+                                setPasswordConfirmation(
+                                    (event.target as HTMLInputElement).value
+                                )
                             }
                             required
                         />

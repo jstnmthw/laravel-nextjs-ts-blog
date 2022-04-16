@@ -6,6 +6,7 @@ import useSWR from 'swr'
 import axios from '@/lib/axios'
 import BlogArticle from '@/components/Blog/blog-article'
 import BlogArticleLoader from '@/components/Blog/blog-article-loader'
+import { BlogPost } from '@/types/blog'
 
 export default function Home() {
     const { user } = useAuth()
@@ -13,7 +14,7 @@ export default function Home() {
     const { data, error } = useSWR('/api/blog', () => {
         return axios.get('/api/blog').then(res => res.data)
     })
-    const articles = data ? [].concat(...data.data) : []
+    const articles = (data ? [].concat(...data.data) : []) as BlogPost[]
     const loading = !data && !error
 
     return (

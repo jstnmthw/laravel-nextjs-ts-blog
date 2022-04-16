@@ -8,16 +8,16 @@ import Input from '@/components/Input'
 import Label from '@/components/Label'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/auth'
-import { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 
 const ForgotPassword = () => {
     const { forgotPassword } = useAuth({ middleware: 'guest' })
 
     const [email, setEmail] = useState('')
-    const [errors, setErrors] = useState([])
-    const [status, setStatus] = useState(null)
+    const [errors, setErrors] = useState<[]>([])
+    const [status, setStatus] = useState<string | null>(null)
 
-    const submitForm = event => {
+    const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         forgotPassword({ email, setErrors, setStatus })
@@ -57,7 +57,11 @@ const ForgotPassword = () => {
                             name="email"
                             value={email}
                             className="mt-1 block w-full"
-                            onChange={event => setEmail(event.target.value)}
+                            onChange={(event: ChangeEvent) =>
+                                setEmail(
+                                    (event.target as HTMLInputElement).value
+                                )
+                            }
                             required
                             autoFocus
                         />

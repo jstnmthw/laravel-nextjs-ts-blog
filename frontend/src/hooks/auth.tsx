@@ -2,8 +2,9 @@ import useSWR, { responseInterface } from 'swr'
 import axios from '@/lib/axios'
 import { useEffect} from 'react'
 import { useRouter } from 'next/router'
-import { ErrorResponse, UserResponse } from '@/types/response'
+import { ErrorResponse } from '@/types/response'
 import {
+    User,
     AuthHookParams,
     ForgotPasswordParams,
     LoginParams,
@@ -24,7 +25,7 @@ export const useAuth = ({
         data: user,
         error,
         mutate
-    }: responseInterface<UserResponse, ErrorResponse> = useSWR(
+    }: responseInterface<User, ErrorResponse> = useSWR(
         cookies.isAuth ? '/api/user' : null,
         () =>
             axios
@@ -56,7 +57,7 @@ export const useAuth = ({
                 setErrors(
                     Object.values(
                         error.response.data.errors
-                    ).flat() as ErrorResponse
+                    ).flat() as []
                 )
             })
     }
@@ -80,7 +81,7 @@ export const useAuth = ({
                 setErrors(
                     Object.values(
                         error.response.data.errors
-                    ).flat() as ErrorResponse
+                    ).flat() as []
                 )
             })
     }
@@ -104,7 +105,7 @@ export const useAuth = ({
                 setErrors(
                     Object.values(
                         error.response.data.errors
-                    ).flat() as ErrorResponse
+                    ).flat() as []
                 )
             })
     }
@@ -130,7 +131,7 @@ export const useAuth = ({
                 setErrors(
                     Object.values(
                         error.response.data.errors
-                    ).flat() as ErrorResponse
+                    ).flat() as []
                 )
             })
     }

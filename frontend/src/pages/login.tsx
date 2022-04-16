@@ -8,7 +8,7 @@ import Input from '@/components/Input'
 import Label from '@/components/Label'
 import Link from 'next/link'
 import { useAuth } from '@/hooks/auth'
-import { SetStateAction, useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 const Login = () => {
@@ -16,17 +16,17 @@ const Login = () => {
 
     const { login } = useAuth({
         middleware: 'guest',
-        redirectIfAuthenticated: '/dashboard',
+        redirectIfAuthenticated: '/dashboard'
     })
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [errors, setErrors] = useState([])
-    const [status, setStatus] = useState(null)
+    const [errors, setErrors] = useState<[]>([])
+    const [status, setStatus] = useState<string | null>(null)
 
     useEffect(() => {
         if (router.query && router.query.reset) {
-            if (router.query.reset?.length > 0 && errors.length === 0) {
+            if (router.query.reset?.length > 0 && errors?.length === 0) {
                 setStatus(window.atob(router.query.reset as string))
             } else {
                 setStatus(null)
@@ -34,7 +34,7 @@ const Login = () => {
         }
     }, [errors, router.query])
 
-    const submitForm = (event: { preventDefault: () => void }) => {
+    const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         login({ email, password, setErrors, setStatus })
@@ -66,9 +66,11 @@ const Login = () => {
                             type="email"
                             value={email}
                             className="mt-1 block w-full"
-                            onChange={(event: {
-                                target: { value: SetStateAction<string> }
-                            }) => setEmail(event.target.value)}
+                            onChange={(event: ChangeEvent) =>
+                                setEmail(
+                                    (event.target as HTMLInputElement).value
+                                )
+                            }
                             required
                             autoFocus
                         />
@@ -83,9 +85,11 @@ const Login = () => {
                             type="password"
                             value={password}
                             className="mt-1 block w-full"
-                            onChange={(event: {
-                                target: { value: SetStateAction<string> }
-                            }) => setPassword(event.target.value)}
+                            onChange={(event: ChangeEvent) =>
+                                setPassword(
+                                    (event.target as HTMLInputElement).value
+                                )
+                            }
                             required
                             autoComplete="current-password"
                         />
