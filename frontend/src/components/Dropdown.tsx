@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 
 const Dropdown = ({
@@ -7,15 +7,15 @@ const Dropdown = ({
     contentClasses = 'py-1 bg-white',
     trigger,
     children,
-    widthClass = 'w-48',
+    widthClass = 'w-48'
 }: {
-    align: string,
-    width: number,
-    contentClasses: string,
-    trigger: () => void,
-    children: JSX.Element,
+    align: string
+    width: number
+    contentClasses: string
+    trigger: () => void
+    children: ReactElement
     widthClass: string
-})  => {
+}) => {
     let alignmentClasses: string
 
     switch (width) {

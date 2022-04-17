@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ReactElement } from 'react'
 
 const ResponsiveNavLink = ({
     active = false,
@@ -6,7 +7,7 @@ const ResponsiveNavLink = ({
     ...props
 }: {
     active: boolean
-    children: JSX.Element
+    children: ReactElement
 }) => (
     <Link href={''} {...props}>
         <a

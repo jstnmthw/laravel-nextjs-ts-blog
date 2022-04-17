@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ReactElement } from 'react'
 
 const NavLink = ({
     active = false,
@@ -6,7 +7,7 @@ const NavLink = ({
     ...props
 }: {
     active: boolean
-    children: JSX.Element
+    children: ReactElement
     className: string
 }) => (
     <Link href={''} {...props}>

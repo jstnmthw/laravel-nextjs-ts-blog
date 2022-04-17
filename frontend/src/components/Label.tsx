@@ -1,10 +1,12 @@
+import { ReactElement } from 'react'
+
 const Label = ({
     className = '',
     children,
     ...props
 }: {
     className?: string
-    children: JSX.Element | string
+    children: ReactElement | string
     htmlFor: string
 }) => (
     <label

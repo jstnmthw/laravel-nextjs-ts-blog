@@ -1,9 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
 
-export type ReactProps = {
-    children: Array<JSX.Element>
-}
-
 export type AuthHookParams = {
     middleware?: string
     redirectIfAuthenticated?: string

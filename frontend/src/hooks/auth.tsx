@@ -32,6 +32,7 @@ export const useAuth = ({
                 .get('/api/user')
                 .then(res => res.data)
                 .catch(error => {
+                    logout()
                     if (error.response.status !== 409) throw error
 
                     router.push('/verify-email')
