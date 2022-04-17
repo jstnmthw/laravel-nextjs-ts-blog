@@ -1,6 +1,6 @@
 import useSWR, { responseInterface } from 'swr'
 import axios from '@/lib/axios'
-import { useEffect} from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { ErrorResponse } from '@/types/response'
 import {
@@ -55,9 +55,7 @@ export const useAuth = ({
                 if (error.response.status !== 422) throw error
 
                 setErrors(
-                    Object.values(
-                        error.response.data.errors
-                    ).flat() as []
+                    Object.values(error.response.data.errors).flat() as []
                 )
             })
     }
@@ -79,9 +77,7 @@ export const useAuth = ({
                 if (error.response.status !== 422) throw error
 
                 setErrors(
-                    Object.values(
-                        error.response.data.errors
-                    ).flat() as []
+                    Object.values(error.response.data.errors).flat() as []
                 )
             })
     }
@@ -103,9 +99,7 @@ export const useAuth = ({
                 if (error.response.status !== 422) throw error
 
                 setErrors(
-                    Object.values(
-                        error.response.data.errors
-                    ).flat() as []
+                    Object.values(error.response.data.errors).flat() as []
                 )
             })
     }
@@ -129,9 +123,7 @@ export const useAuth = ({
                 if (error.response.status != 422) throw error
 
                 setErrors(
-                    Object.values(
-                        error.response.data.errors
-                    ).flat() as []
+                    Object.values(error.response.data.errors).flat() as []
                 )
             })
     }
