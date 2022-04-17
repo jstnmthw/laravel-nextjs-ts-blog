@@ -6,14 +6,14 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Inter', ...defaultTheme.fontFamily.sans],
+                sans: ['Inter', ...defaultTheme.fontFamily.sans]
             },
             maxWidth: {
-                '8xl': '90rem',
+                '8xl': '90rem'
             },
             colors: {
                 navy: {
-                    900: '#11192c',
+                    900: '#11192c'
                 },
                 purple: {
                     DEFAULT: '#351C80',
@@ -26,23 +26,20 @@ module.exports = {
                     600: '#2C176B',
                     700: '#241356',
                     800: '#1B0E41',
-                    900: '#120A2C',
-                },
+                    900: '#120A2C'
+                }
             },
             backgroundImage: {
                 blog: "url('/img/blog-dark.png')",
-                gradient: "url('/img/gradient-bg.png')",
-                'gradient-md': "url('/img/gradient-bg-md.png')",
-            },
-        },
+                'gradient-img': "url('/img/gradient-bg.png')",
+                'gradient-md': "url('/img/gradient-bg-md.png')"
+            }
+        }
     },
     variants: {
         extend: {
-            opacity: ['disabled'],
-        },
+            opacity: ['disabled']
+        }
     },
-    plugins: [
-        require('@tailwindcss/forms'),
-        require('@tailwindcss/typography'),
-    ],
+    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')]
 }

@@ -3,7 +3,7 @@ import Document, {
     Head,
     Html,
     Main,
-    NextScript,
+    NextScript
 } from 'next/document'
 
 class MyDocument extends Document {
@@ -20,7 +20,7 @@ class MyDocument extends Document {
                         rel="stylesheet"
                     />
                 </Head>
-                <body className="bg-white text-black antialiased dark:bg-navy-900 dark:text-white">
+                <body className="dark:bg-gradient-img bg-white bg-top bg-no-repeat text-black antialiased dark:bg-navy-900 dark:text-white">
                     <Main />
                     <NextScript />
                 </body>

@@ -23,7 +23,7 @@ export default function Home() {
                 <title>Blog - justin.ly</title>
             </Head>
             <Navigation user={user} />
-            <main className="min-h-full overflow-auto bg-top bg-no-repeat pt-[53px] dark:bg-blog">
+            <main className="min-h-full overflow-auto bg-top">
                 <Hero
                     title={'Blog'}
                     subtitle={'Scribblings from a full stack developer.'}

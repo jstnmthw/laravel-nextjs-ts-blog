@@ -25,7 +25,7 @@ const Navigation = ({ user }: { user?: User }) => {
         <nav
             className={
                 (scrollTop
-                    ? 'bg-white backdrop-blur-sm dark:bg-navy-900/50 md:bg-navy-900/10 '
+                    ? 'bg-white backdrop-blur-sm dark:bg-navy-900/50 dark:md:bg-navy-900/70 '
                     : '') +
                 'fixed top-0 z-10 w-full flex-none border-b border-slate-900/10 py-4 px-4 transition-all dark:border-slate-300/10'
             }>

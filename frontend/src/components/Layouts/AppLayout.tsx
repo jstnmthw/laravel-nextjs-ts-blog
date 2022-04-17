@@ -1,14 +1,14 @@
 import Navigation from '@/components/Layouts/Navigation'
 import { useAuth } from '@/hooks/auth'
-import { ReactProps } from '@/types/auth'
+import { ReactElement } from 'react'
 
-const AppLayout = ({ children }: ReactProps) => {
+const AppLayout = ({ children }: { children: ReactElement[] }) => {
     const { user } = useAuth({
         middleware: 'auth'
     })
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen">
             <Navigation user={user} />
 
             {/* Page Content */}
